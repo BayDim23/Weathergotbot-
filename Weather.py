@@ -6,6 +6,8 @@ from config import TOKEN
 from config import open_weather_token
 import requests
 import datetime
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 
 bot = Bot(token=TOKEN)
