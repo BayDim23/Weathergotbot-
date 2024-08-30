@@ -1,3 +1,3 @@
-open_weather_token = '01226a9204c84263def460dd6e91b5c8'
+open_weather_token = 'fea791a496dcff14f76b199576bcf23e'
 
 TOKEN = '7382032755:AAF3hgEWp08lkN8ESmUOUzuveQA1MD03yco'
