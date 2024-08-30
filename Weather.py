@@ -1,23 +1,37 @@
 import asyncio
 from aiogram import Bot, Dispatcher
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from config import TOKEN
 from config import open_weather_token
 import requests
 import datetime
 import logging
-logging.basicConfig(level=logging.DEBUG)
+from pprint import pprint
 
+
+
+
+logging.basicConfig(level=logging.DEBUG)
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def start(message: Message):
-    await message.answer("Привет! Напиши название города !")
+    await message.answer("Привет! Я бот который поможет посмотреть погоду!")
 
-def get_weather(city,open_weather_token):
+@dp.message(Command('help'))
+async def help(message: Message):
+    await message.answer("Чем могу помочь ? ")
+
+@dp.message(Command('weather'))
+async def weather(message: Message):
+    await message.answer("Напиши название города !")
+
+
+
+def get_weather(сity, open_weather_token):
     code_to_smile = {
         "Clear": "Ясно \U00002600",
         "Clouds": "Облачно \U00002601",
@@ -27,12 +41,9 @@ def get_weather(city,open_weather_token):
         "Snow": "Снег \U0001F328",
         "Mist": "Туман \U0001F32B"
     }
-
-
-
     try:
         r = requests.get(
-            f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={open_weather_token}&units=metric'
+            f'https://api.openweathermap.org/data/2.5/weather?q={сity}&appid={open_weather_token}&units=metric'
         )
         data = r.json()
         #pprint(data)
