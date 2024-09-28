@@ -94,6 +94,10 @@ async def get_weather(message: Message):
 
         print("Конец функции get_weather")
 
+
+
+
+
 async def main():
     await dp.start_polling(bot)
 
